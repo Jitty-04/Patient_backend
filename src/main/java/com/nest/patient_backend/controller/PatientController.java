@@ -3,10 +3,9 @@ package com.nest.patient_backend.controller;
 import com.nest.patient_backend.dao.PatientDao;
 import com.nest.patient_backend.model.Patients;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class PatientController {
@@ -23,5 +22,10 @@ public class PatientController {
     System.out.println(p.getDoctorname().toString());
     dao.save(p);
     return "Patient Added successfully";
+}
+@CrossOrigin(origins = "*")
+    @GetMapping("/viewall")
+    public List<Patients> viewAllPatients(){
+    return (List<Patients>) dao.findAll();
 }
 }
